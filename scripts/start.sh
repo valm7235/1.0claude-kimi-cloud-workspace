@@ -71,7 +71,7 @@ if [ -n "${GITHUB_REPO_URL:-}" ]; then
   bash /app/scripts/autosave.sh &
 fi
 
-# Demarrer le serveur Node.js
+# Demarrer CloudCLI
 cd /app || exit 1
 echo "[start] Lancement CloudCLI UI sur 0.0.0.0:${PORT:-7860}..."
-exec node server.js
+exec npx @cloudcli-ai/cloudcli --port "${PORT:-7860}"

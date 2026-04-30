@@ -10,6 +10,7 @@
     "server": "node server.js"
   },
   "dependencies": {
+    "@cloudcli-ai/cloudcli": "^1.31.5",
     "express": "^4.21.0",
     "node-fetch": "^2.7.0"
   },

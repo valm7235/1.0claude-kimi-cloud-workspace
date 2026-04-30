@@ -16,7 +16,8 @@ Ce projet fournit une interface web de chat (CloudCLI UI) déployée dans un Hug
 - **Mode gratuit = best effort** : aucune garantie de disponibilité H24 absolue.
 - **Hugging Face cpu-basic gratuit peut dormir** après inactivité ; le keepalive gratuit réduit le risque sans l'éliminer totalement.
 - **Ce n'est PAS une copie exacte de Windows** ; c'est un conteneur Linux.
-- **Claude Code CLI** (outil propriétaire Anthropic) n'est pas inclus car il n'est pas publiquement installable via npm. À la place, ce projet fournit une interface web qui appelle directement l'API Moonshot.
+- **CloudCLI UI** (@cloudcli-ai/cloudcli) est installée et servie comme interface web principale.
+- **Claude Code CLI** (outil propriétaire Anthropic) n'est pas inclus car il n'est pas publiquement installable via npm. CloudCLI fonctionne sans CLI sous-jacent mais affiche une interface vide si aucun agent n'est configuré.
 
 ## URLs
 
