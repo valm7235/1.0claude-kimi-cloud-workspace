@@ -27,13 +27,13 @@
 5. **Verifier le build**
    - Attendre que le build Docker se termine (onglet **Logs**)
 6. **Ouvrir l'URL**
-   - `https://1.0claude-kimi-hf-space.hf.space`
+   - `https://vmu7235-1-0claude-kimi-hf-space.hf.space`
    - Verifier que l'interface s'affiche
    - Verifier que `/health` repond
 
 ## Verification post-deploy
 
-- Ouvrir `https://1.0claude-kimi-hf-space.hf.space`
+- Ouvrir `https://vmu7235-1-0claude-kimi-hf-space.hf.space`
 - Verifier que CloudCLI UI s'ouvre (page HTML avec chat)
 - Verifier que Kimi est utilise (voir `/health` ou les logs)
 - Verifier que Claude Code repond via l'interface (envoyer un message de test)
@@ -48,5 +48,5 @@
 ## URL HTTPS finale
 
 ```
-URLHTTPSUI_FINAL = https://1.0claude-kimi-hf-space.hf.space
+URLHTTPSUI_FINAL = https://vmu7235-1-0claude-kimi-hf-space.hf.space
 ```

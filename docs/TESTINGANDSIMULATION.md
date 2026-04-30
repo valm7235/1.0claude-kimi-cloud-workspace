@@ -33,7 +33,7 @@ Attendu : `SIMULATION TERMINEE — tous les criteres passent`
 
 ## Tests dans Hugging Face
 
-1. Ouvrir l'URL : `https://1.0claude-kimi-hf-space.hf.space`
+1. Ouvrir l'URL : `https://vmu7235-1-0claude-kimi-hf-space.hf.space`
 2. Verifier que la page HTML se charge.
 3. Envoyer un message de test dans l'interface.
 4. Verifier la reponse.
@@ -70,13 +70,13 @@ Si la simulation complete n'est pas possible (ex. pas de token API configure, pa
 ## Test URL HTTPS finale depuis PC
 
 ```bash
-curl -v https://1.0claude-kimi-hf-space.hf.space/health
+curl -v https://vmu7235-1-0claude-kimi-hf-space.hf.space/health
 ```
 
 ## Test URL HTTPS finale depuis iPhone Safari
 
 1. Ouvrir Safari sur iPhone.
-2. Naviguer vers `https://1.0claude-kimi-hf-space.hf.space`.
+2. Naviguer vers `https://vmu7235-1-0claude-kimi-hf-space.hf.space`.
 3. Verifier que l'interface se charge.
 4. Envoyer un message de test.
 5. Verifier la reponse.
@@ -85,7 +85,7 @@ Alternative sans iPhone : utiliser curl avec un User-Agent mobile :
 
 ```bash
 curl -H "User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15" \
-  https://1.0claude-kimi-hf-space.hf.space/health
+  https://vmu7235-1-0claude-kimi-hf-space.hf.space/health
 ```
 
 ## Criteres de reussite minimale

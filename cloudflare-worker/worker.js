@@ -7,7 +7,7 @@
 
 export default {
   async fetch(request, env, ctx) {
-    const HFSPACEURL = env.HFSPACEURL || "https://1.0claude-kimi-hf-space.hf.space";
+    const HFSPACEURL = env.HFSPACEURL || "https://vmu7235-1-0claude-kimi-hf-space.hf.space";
 
     const url = new URL(request.url);
     const target = new URL(url.pathname + url.search, HFSPACEURL);

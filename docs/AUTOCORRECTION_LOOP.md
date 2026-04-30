@@ -53,7 +53,7 @@ bash scripts/healthcheck.sh
 
 Verifier que `URLHTTPSUI_FINAL` repond :
 ```bash
-curl -fsS https://1.0claude-kimi-hf-space.hf.space/health
+curl -fsS https://vmu7235-1-0claude-kimi-hf-space.hf.space/health
 ```
 
 **Si erreur** : verifier le deploiement, corriger, reprendre a E.

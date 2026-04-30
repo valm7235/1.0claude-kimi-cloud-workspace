@@ -46,7 +46,7 @@ Hugging Face **cpu-basic gratuit** peut mettre un Space en veille (sleep) apres 
 ## URL reellement pingee
 
 ```
-URLHTTPSUI_FINAL = https://1.0claude-kimi-hf-space.hf.space
+URLHTTPSUI_FINAL = https://vmu7235-1-0claude-kimi-hf-space.hf.space
 ```
 
 Le endpoint `/health` est utilise pour minimiser la charge.
@@ -54,7 +54,7 @@ Le endpoint `/health` est utilise pour minimiser la charge.
 ## Comment tester manuellement le keepalive
 
 ```bash
-curl -v https://1.0claude-kimi-hf-space.hf.space/health
+curl -v https://vmu7235-1-0claude-kimi-hf-space.hf.space/health
 ```
 
 Ou lancer le workflow manuellement depuis l'onglet **Actions** > **Keepalive** > **Run workflow**.

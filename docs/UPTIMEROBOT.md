@@ -11,7 +11,7 @@
 1. Cliquer sur **Add New Monitor**
 2. Type : **HTTP(s)**
 3. Friendly Name : `Claude Kimi HF Space`
-4. URL : `https://1.0claude-kimi-hf-space.hf.space/health`
+4. URL : `https://vmu7235-1-0claude-kimi-hf-space.hf.space/health`
 5. Monitoring Interval : **5 minutes** (gratuit)
 6. Cliquer sur **Create Monitor**
 

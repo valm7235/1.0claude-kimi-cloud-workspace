@@ -36,7 +36,7 @@ Apres comparaison, l'URL **native Hugging Face** est retenue comme URL principal
 - Directement liee au Space.
 
 ```
-URLHTTPSUI_FINAL = https://1.0claude-kimi-hf-space.hf.space
+URLHTTPSUI_FINAL = https://vmu7235-1-0claude-kimi-hf-space.hf.space
 ```
 
 Le Worker Cloudflare reste documente comme solution de **fallback** ou de **redirection** si necessaire.

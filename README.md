@@ -20,8 +20,8 @@ Ce projet fournit une interface web de chat (CloudCLI UI) déployée dans un Hug
 
 ## URLs
 
-- **URL Hugging Face native** : `https://1.0claude-kimi-hf-space.hf.space`
-- **URL HTTPS finale gratuite retenue** : `https://1.0claude-kimi-hf-space.hf.space`
+- **URL Hugging Face native** : `https://vmu7235-1-0claude-kimi-hf-space.hf.space`
+- **URL HTTPS finale gratuite retenue** : `https://vmu7235-1-0claude-kimi-hf-space.hf.space`
   - Aucune garantie contractuelle de durée indéfinie.
   - Aucune date d'expiration connue.
   - Gratuite et durable dans la mesure du service Hugging Face Spaces.
