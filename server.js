@@ -40,6 +40,16 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/debug/env', (req, res) => {
+  res.json({
+    github_repo_url_set: !!process.env.GITHUB_REPO_URL,
+    github_token_set: !!process.env.GITHUB_TOKEN,
+    anthropic_auth_token_set: !!process.env.ANTHROPIC_AUTH_TOKEN,
+    hf_token_set: !!process.env.HF_TOKEN,
+    model: process.env.ANTHROPIC_MODEL || 'default'
+  });
+});
+
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', model: ANTHROPIC_MODEL, timestamp: new Date().toISOString() });
 });
