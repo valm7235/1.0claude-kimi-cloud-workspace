@@ -1,0 +1,3 @@
+[autosave] Demarre — intervalle 60s — repo masque
+[2026-04-30 20:30:17 UTC] DEMARRE — intervalle 60s
+[2026-04-30 20:31:17 UTC] CHANGEMENTS — ?? activity/
