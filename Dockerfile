@@ -28,5 +28,6 @@ EXPOSE 7860
 
 ENV NODE_ENV=production
 ENV PORT=7860
+ENV VITE_IS_PLATFORM=true
 
 CMD ["bash", "scripts/start.sh"]
