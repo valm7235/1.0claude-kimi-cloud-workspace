@@ -11,8 +11,8 @@ const ANTHROPIC_BASE_URL = process.env.ANTHROPIC_BASE_URL || 'https://api.moonsh
 const ANTHROPIC_AUTH_TOKEN = process.env.ANTHROPIC_AUTH_TOKEN || '';
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || 'kimi-k2.6';
 
-const LOG_DIR = '/workspace/logs';
-const LOG_FILE = path.join(LOG_DIR, 'access.log');
+const LOG_DIR = '/workspace/activity';
+const LOG_FILE = path.join(LOG_DIR, 'access.txt');
 
 function ensureLogDir() {
   try {
@@ -52,7 +52,7 @@ app.get('/debug/env', (req, res) => {
 
 app.get('/debug/autosave', (req, res) => {
   try {
-    const trace = fs.readFileSync('/workspace/logs/autosave-trace.log', 'utf8');
+    const trace = fs.readFileSync('/workspace/activity/autosave-trace.txt', 'utf8');
     const lines = trace.split('\n').slice(-50);
     res.type('text/plain').send(lines.join('\n'));
   } catch (e) {

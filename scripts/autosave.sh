@@ -4,9 +4,9 @@ set -u
 INTERVAL=60
 REPO_URL="${GITHUB_REPO_URL:-}"
 TOKEN="${GITHUB_TOKEN:-}"
-TRACE_FILE="/workspace/logs/autosave-trace.log"
+TRACE_FILE="/workspace/activity/autosave-trace.txt"
 
-mkdir -p /workspace/logs 2>/dev/null || true
+mkdir -p /workspace/activity 2>/dev/null || true
 
 log_trace() {
   echo "[$(date -u +'%Y-%m-%d %H:%M:%S UTC')] $1" >> "${TRACE_FILE}"
