@@ -68,7 +68,8 @@ fi
 # Demarrer autosave en arriere-plan si GITHUB_REPO_URL est defini
 if [ -n "${GITHUB_REPO_URL:-}" ]; then
   echo "[start] Lancement de autosave.sh en arriere-plan..."
-  bash /app/scripts/autosave.sh &
+  mkdir -p /workspace/logs
+  bash /app/scripts/autosave.sh >> /workspace/logs/autosave-trace.log 2>&1 &
 fi
 
 # Demarrer CloudCLI en arriere-plan sur le port 3001
