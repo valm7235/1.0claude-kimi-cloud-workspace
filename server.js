@@ -1,5 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
+const fs = require('fs');
+const path = require('path');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
@@ -9,7 +11,34 @@ const ANTHROPIC_BASE_URL = process.env.ANTHROPIC_BASE_URL || 'https://api.moonsh
 const ANTHROPIC_AUTH_TOKEN = process.env.ANTHROPIC_AUTH_TOKEN || '';
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || 'kimi-k2.6';
 
+const LOG_DIR = '/workspace/logs';
+const LOG_FILE = path.join(LOG_DIR, 'access.log');
+
+function ensureLogDir() {
+  try {
+    if (!fs.existsSync(LOG_DIR)) {
+      fs.mkdirSync(LOG_DIR, { recursive: true });
+    }
+  } catch (e) {
+    console.error('[log] Cannot create log dir:', e.message);
+  }
+}
+
+function logRequest(req) {
+  try {
+    const line = `[${new Date().toISOString()}] ${req.method} ${req.url}\n`;
+    fs.appendFileSync(LOG_FILE, line);
+  } catch (e) {
+    // ignore logging errors
+  }
+}
+
 app.use(express.json());
+app.use((req, res, next) => {
+  ensureLogDir();
+  logRequest(req);
+  next();
+});
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', model: ANTHROPIC_MODEL, timestamp: new Date().toISOString() });
