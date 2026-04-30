@@ -71,7 +71,15 @@ if [ -n "${GITHUB_REPO_URL:-}" ]; then
   bash /app/scripts/autosave.sh &
 fi
 
-# Demarrer CloudCLI
+# Demarrer CloudCLI en arriere-plan sur le port 3001
 cd /app || exit 1
-echo "[start] Lancement CloudCLI UI sur 0.0.0.0:${PORT:-7860}..."
-exec npx @cloudcli-ai/cloudcli --port "${PORT:-7860}"
+echo "[start] Lancement CloudCLI UI sur 0.0.0.0:3001..."
+npx @cloudcli-ai/cloudcli --port 3001 &
+CLOUDCLI_PID=$!
+
+# Attendre que CloudCLI demarre
+sleep 3
+
+# Demarrer le serveur principal (proxy + API chat)
+echo "[start] Lancement serveur principal sur 0.0.0.0:${PORT:-7860}..."
+exec node server.js

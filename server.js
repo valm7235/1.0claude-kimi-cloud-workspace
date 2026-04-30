@@ -1,6 +1,6 @@
 const express = require('express');
 const fetch = require('node-fetch');
-const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
 const PORT = process.env.PORT || 7860;
@@ -10,7 +10,6 @@ const ANTHROPIC_AUTH_TOKEN = process.env.ANTHROPIC_AUTH_TOKEN || '';
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || 'kimi-k2.6';
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', model: ANTHROPIC_MODEL, timestamp: new Date().toISOString() });
@@ -61,10 +60,22 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+const cloudcliProxy = createProxyMiddleware({
+  target: 'http://localhost:3001',
+  changeOrigin: true,
+  ws: true,
+  logLevel: 'info',
+  onError: (err, req, res) => {
+    console.error('Proxy error:', err.message);
+    if (!res.headersSent) {
+      res.status(502).send('CloudCLI UI indisponible (port 3001). Erreur: ' + err.message);
+    }
+  }
 });
 
+app.use('/', cloudcliProxy);
+
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`CloudCLI UI running on http://0.0.0.0:${PORT}`);
+  console.log(`Proxy serveur principal sur http://0.0.0.0:${PORT} -> CloudCLI http://localhost:3001`);
+  console.log(`API Moonshot conservee sur /api/chat`);
 });
