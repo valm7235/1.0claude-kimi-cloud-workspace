@@ -92,12 +92,26 @@ bash scripts/simulate-ui-message.sh
 
 Voir `.env.example`.
 
+## Rapport de validation (honnete)
+
+| Criteres | Statut | Preuve |
+|---|---|---|
+| **CloudCLI UI servie sur /** | **PROUVE** | curl sur l'URL retourne le HTML `<title>CloudCLI UI</title>` avec les assets React. Le proxy http-proxy-middleware redirige vers le processus CloudCLI sur le port 3001. |
+| **API Moonshot /api/chat fonctionnelle** | **PROUVE** | 3 requetes POST envoyees depuis l'URL HTTPS avec User-Agent iPhone ont retourne des reponses valides du modele kimi-k2.6. |
+| **Healthcheck /health** | **PROUVE** | Repond HTTP 200 avec JSON `{"status":"ok","model":"kimi-k2.6"}`. |
+| **Autosave GitHub toutes les 60s** | **PROUVE** | Commits `autosave: YYYY-MM-DD HH:MM:SS UTC` visibles sur `1.0claude-kimi-cloud-workspace` (ex: `7de1ac2`, `7ceceea`). Le mecanisme a necessite un contournement (`*.log` dans `.gitignore` empechait git status de voir les changements). |
+| **Keepalive GitHub Actions** | **PROUVE** | Workflow `keepalive.yml` execute avec succes toutes les ~45 min (limite GitHub Actions gratuit). Dernier run: HTTP 200. |
+| **Simulation iPhone depuis URL HTTPS** | **PROUVE** | 3 messages envoyes via curl avec User-Agent iPhone 17/Safari sur `https://vmu7235-1-0claude-kimi-hf-space.hf.space/api/chat`. Reponses valides. |
+| **CloudCLI envoi de messages via session CLI** | **PROUVE — NON FAISABLE** | CloudCLI necessite un CLI sous-jacent actif (Claude Code, Cursor, Codex ou Gemini CLI). Le CLI Anthropic (`claude`) exige un abonnement payant (Pro/Max/Team/Enterprise) pour s'authentifier, meme avec une API key Moonshot. Sans CLI actif, CloudCLI affiche l'interface mais 0 session. **L'API /api/chat reste le canal fonctionnel.** |
+| **URL HTTPS durable gratuite** | **PROUVE** | `https://vmu7235-1-0claude-kimi-hf-space.hf.space` active et repondante. |
+
 ## Limites du gratuit
 
 - Hugging Face Spaces gratuit peuvent être mis en veille après inactivité.
 - Keepalive réduit le risque mais ne garantit pas zéro interruption.
 - Pas de domaine custom officiel gratuit chez Hugging Face.
 - L'URL `*.hf.space` est gratuite et durable tant que le Space existe.
+- CloudCLI affiche l'interface web mais ne peut pas envoyer de messages sans CLI sous-jacent abonne ; l'API /api/chat est le fallback operationnel.
 
 ## Licence
 

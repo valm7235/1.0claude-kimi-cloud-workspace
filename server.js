@@ -40,26 +40,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/debug/env', (req, res) => {
-  res.json({
-    github_repo_url_set: !!process.env.GITHUB_REPO_URL,
-    github_token_set: !!process.env.GITHUB_TOKEN,
-    anthropic_auth_token_set: !!process.env.ANTHROPIC_AUTH_TOKEN,
-    hf_token_set: !!process.env.HF_TOKEN,
-    model: process.env.ANTHROPIC_MODEL || 'default'
-  });
-});
-
-app.get('/debug/autosave', (req, res) => {
-  try {
-    const trace = fs.readFileSync('/workspace/activity/autosave-trace.txt', 'utf8');
-    const lines = trace.split('\n').slice(-50);
-    res.type('text/plain').send(lines.join('\n'));
-  } catch (e) {
-    res.status(404).type('text/plain').send('Trace autosave introuvable: ' + e.message);
-  }
-});
-
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', model: ANTHROPIC_MODEL, timestamp: new Date().toISOString() });
 });
