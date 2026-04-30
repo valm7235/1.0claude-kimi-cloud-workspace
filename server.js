@@ -1,0 +1,70 @@
+const express = require('express');
+const fetch = require('node-fetch');
+const path = require('path');
+
+const app = express();
+const PORT = process.env.PORT || 7860;
+
+const ANTHROPIC_BASE_URL = process.env.ANTHROPIC_BASE_URL || 'https://api.moonshot.ai/anthropic';
+const ANTHROPIC_AUTH_TOKEN = process.env.ANTHROPIC_AUTH_TOKEN || '';
+const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || 'kimi-k2.6';
+
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', model: ANTHROPIC_MODEL, timestamp: new Date().toISOString() });
+});
+
+app.post('/api/chat', async (req, res) => {
+  try {
+    const { message, history = [] } = req.body;
+    if (!message) {
+      return res.status(400).json({ error: 'Message requis' });
+    }
+    if (!ANTHROPIC_AUTH_TOKEN) {
+      return res.status(500).json({ error: 'ANTHROPIC_AUTH_TOKEN non configure' });
+    }
+
+    const messages = [];
+    for (const h of history) {
+      messages.push({ role: h.role, content: h.content });
+    }
+    messages.push({ role: 'user', content: message });
+
+    const response = await fetch(`${ANTHROPIC_BASE_URL}/v1/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_AUTH_TOKEN,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: ANTHROPIC_MODEL,
+        max_tokens: 4096,
+        messages
+      })
+    });
+
+    if (!response.ok) {
+      const text = await response.text();
+      console.error('Moonshot API error:', response.status, text);
+      return res.status(502).json({ error: 'Erreur API Moonshot', detail: text });
+    }
+
+    const data = await response.json();
+    const reply = data.content && data.content[0] && data.content[0].text ? data.content[0].text : JSON.stringify(data);
+    res.json({ reply, model: ANTHROPIC_MODEL });
+  } catch (err) {
+    console.error('Chat error:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`CloudCLI UI running on http://0.0.0.0:${PORT}`);
+});

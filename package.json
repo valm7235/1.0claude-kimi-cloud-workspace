@@ -1,0 +1,20 @@
+{
+  "name": "claude-kimi-hf-space",
+  "version": "1.0.0",
+  "description": "Cloud web UI + Kimi K2.6 via Moonshot API on Hugging Face Spaces",
+  "main": "server.js",
+  "scripts": {
+    "start": "bash scripts/start.sh",
+    "healthcheck": "bash scripts/healthcheck.sh",
+    "simulate": "bash scripts/simulate-ui-message.sh",
+    "server": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "node-fetch": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT"
+}

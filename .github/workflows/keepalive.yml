@@ -1,0 +1,24 @@
+name: Keepalive
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping HF Space
+        env:
+          TARGET_URL: ${{ vars.URLHTTPSUI_FINAL || vars.HFSPACEURL || 'https://1.0claude-kimi-hf-space.hf.space' }}
+        run: |
+          echo "[keepalive] Ping a $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          echo "[keepalive] URL : ${TARGET_URL}"
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${TARGET_URL}/health" || echo "000")
+          echo "[keepalive] Status HTTP : ${STATUS}"
+          if [ "${STATUS}" = "200" ]; then
+            echo "[keepalive] SUCCES"
+          else
+            echo "[keepalive] ECHEC (status ${STATUS})"
+          fi

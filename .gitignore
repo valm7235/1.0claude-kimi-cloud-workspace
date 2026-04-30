@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+node_modules/
+.cache/
+workspace/
+*.log
+*.tmp
+*.key
+*.pem
+*.token
+simulation-logs/
+.claude/.credentials.json

@@ -1,0 +1,6 @@
+name = "claude-kimi-cloud"
+main = "worker.js"
+compatibility_date = "2025-04-30"
+
+[vars]
+HFSPACEURL = "https://1.0claude-kimi-hf-space.hf.space"

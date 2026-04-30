@@ -1,0 +1,89 @@
+name: Smoke Test
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verifier fichiers obligatoires
+        run: |
+          ERR=0
+          check() {
+            if [ ! -f "$1" ]; then
+              echo "MANQUANT: $1"
+              ERR=1
+            else
+              echo "OK: $1"
+            fi
+          }
+
+          check README.md
+          check Dockerfile
+          check package.json
+          check scripts/start.sh
+          check scripts/autosave.sh
+          check scripts/healthcheck.sh
+          check scripts/simulate-ui-message.sh
+          check .env.example
+          check docs/DEPLOY_HUGGINGFACE.md
+          check docs/GITHUB_AUTOSAVE.md
+          check docs/KEEPALIVE.md
+          check docs/CLOUDFLAREWORKERSFREE_URL.md
+          check docs/UPTIMEROBOT.md
+          check docs/TESTINGANDSIMULATION.md
+          check docs/AUTOCORRECTION_LOOP.md
+          check cloudflare-worker/worker.js
+
+          if [ "${ERR}" -ne 0 ]; then
+            echo "Fichiers obligatoires manquants !"
+            exit 1
+          fi
+
+      - name: Verifier README.md front matter
+        run: |
+          if ! grep -q "sdk: docker" README.md; then
+            echo "ERREUR: README.md ne contient pas 'sdk: docker'"
+            exit 1
+          fi
+          if ! grep -q "app_port: 7860" README.md; then
+            echo "ERREUR: README.md ne contient pas 'app_port: 7860'"
+            exit 1
+          fi
+          echo "README.md front matter OK"
+
+      - name: Verifier README.md mentions
+        run: |
+          for term in URLHTTPSUI_FINAL HFSPACEREPO GITHUBWORKSPACEREPO; do
+            if ! grep -q "${term}" README.md; then
+              echo "ERREUR: README.md ne mentionne pas ${term}"
+              exit 1
+            fi
+            echo "README.md mentionne ${term} OK"
+          done
+
+      - name: Verifier .env absent du repo
+        run: |
+          if [ -f ".env" ]; then
+            echo "ERREUR: .env ne doit pas etre present dans le repo"
+            exit 1
+          fi
+          echo ".env absent OK"
+
+      - name: Verifier syntaxe package.json
+        run: node -e "require('./package.json')" && echo "package.json OK"
+
+      - name: Verifier scripts executables
+        run: |
+          for s in scripts/start.sh scripts/autosave.sh scripts/healthcheck.sh scripts/simulate-ui-message.sh; do
+            if [ ! -x "${s}" ]; then
+              echo "AVERTISSEMENT: ${s} non executable"
+            fi
+          done
