@@ -100,3 +100,17 @@
 [2026-05-01T13:47:23.320Z] GET /api/plugins
 [2026-05-01T13:47:23.321Z] GET /api/auth/status
 [2026-05-01T13:47:25.065Z] GET /sw.js
+[2026-05-01T13:47:45.951Z] GET /
+[2026-05-01T13:47:46.135Z] GET /
+[2026-05-01T13:47:46.617Z] GET /api/auth/status
+[2026-05-01T13:47:46.618Z] GET /api/plugins
+[2026-05-01T13:47:46.619Z] GET /api/taskmaster/installation-status
+[2026-05-01T13:47:47.103Z] GET /sw.js
+[2026-05-01T13:47:48.344Z] GET /sw.js
+[2026-05-01T13:47:53.556Z] GET /
+[2026-05-01T13:47:53.745Z] GET /
+[2026-05-01T13:47:54.209Z] GET /api/taskmaster/installation-status
+[2026-05-01T13:47:54.210Z] GET /api/auth/status
+[2026-05-01T13:47:54.210Z] GET /api/plugins
+[2026-05-01T13:47:54.739Z] GET /sw.js
+[2026-05-01T13:47:55.963Z] GET /sw.js
