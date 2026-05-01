@@ -93,3 +93,4 @@
 [2026-05-01T11:49:16.813Z] GET /api/taskmaster/installation-status
 [2026-05-01T11:49:17.140Z] GET /logo.svg
 [2026-05-01T11:49:17.220Z] GET /manifest.json
+[2026-05-01T12:39:51.419Z] GET /health
