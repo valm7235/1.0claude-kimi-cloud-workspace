@@ -94,3 +94,9 @@
 [2026-05-01T11:49:17.140Z] GET /logo.svg
 [2026-05-01T11:49:17.220Z] GET /manifest.json
 [2026-05-01T12:39:51.419Z] GET /health
+[2026-05-01T13:47:21.677Z] GET /
+[2026-05-01T13:47:22.550Z] GET /
+[2026-05-01T13:47:23.319Z] GET /api/taskmaster/installation-status
+[2026-05-01T13:47:23.320Z] GET /api/plugins
+[2026-05-01T13:47:23.321Z] GET /api/auth/status
+[2026-05-01T13:47:25.065Z] GET /sw.js
