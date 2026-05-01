@@ -37,3 +37,4 @@
 [2026-05-01T06:07:21.690Z] GET /api/taskmaster/installation-status
 [2026-05-01T06:07:21.895Z] GET /logo.svg
 [2026-05-01T06:07:23.426Z] GET /sw.js
+[2026-05-01T06:47:23.322Z] GET /health
