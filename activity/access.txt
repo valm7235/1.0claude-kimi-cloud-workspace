@@ -35,3 +35,5 @@
 [2026-05-01T06:07:21.575Z] GET /api/plugins
 [2026-05-01T06:07:21.614Z] GET /api/auth/status
 [2026-05-01T06:07:21.690Z] GET /api/taskmaster/installation-status
+[2026-05-01T06:07:21.895Z] GET /logo.svg
+[2026-05-01T06:07:23.426Z] GET /sw.js
