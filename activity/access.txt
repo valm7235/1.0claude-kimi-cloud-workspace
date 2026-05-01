@@ -72,3 +72,4 @@
 [2026-05-01T09:24:44.804Z] GET /api/taskmaster/installation-status
 [2026-05-01T09:24:46.540Z] GET /sw.js
 [2026-05-01T09:25:08.737Z] POST /api/auth/register
+[2026-05-01T09:31:25.134Z] POST /api/auth/register
