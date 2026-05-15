@@ -362,3 +362,4 @@
 [2026-05-15T07:03:13.497Z] GET /api/auth/status
 [2026-05-15T07:03:13.498Z] GET /api/taskmaster/installation-status
 [2026-05-15T07:03:13.693Z] GET /logo.svg
+[2026-05-15T08:27:28.042Z] GET /health
